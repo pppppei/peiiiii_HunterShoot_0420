@@ -9,6 +9,19 @@ public class LearnCondition : MonoBehaviour
 {
     public bool openDoor;
     public int combo;
+    public string prop;
+
+    //1. 定義列舉內容
+    //2. 定義欄位
+
+    //列舉語法: 修飾詞 列舉 列舉名稱 {列舉內容}
+    public enum StatePlayer
+    {
+        Idle, Walk, Run, Hurt, Att, Dead
+    }
+
+    //欄位:修飾詞 列舉名稱 欄位名稱;
+    public StatePlayer statePlayer;
 
     private void Start()
     {
@@ -16,13 +29,18 @@ public class LearnCondition : MonoBehaviour
         //if 語法: if(布林值){布林值等於 true 會執行}
         if (true)
         {
-            print("我判斷式if內");
+            print("我在判斷式if內");
         }
         #endregion
     }
 
     private void Update()
     {
+        #region 判斷式 if
+        /* if語法:
+          if (布林值) {布林值等於true會執行}
+          否則else {布林值等於false會執行}
+        */
         if (openDoor)
         {
             print("開門");
@@ -32,21 +50,75 @@ public class LearnCondition : MonoBehaviour
             print("關門");
         }
 
-        //連擊數 < 100 攻擊力 + 0%
-        //連擊數 >= 100 攻擊力 + 10% 
-        //連擊數 >= 200 攻擊力 + 20 %
+        //else if () {} 無限數量
+        //連擊數 < 100 攻擊力 +0%
+        //連擊數 >= 100 攻擊力 +10% 
+        //連擊數 >= 200 攻擊力 +20 %
         if (combo < 100)
         {
-            print("攻擊力+0%");
+            print("攻擊力 + 0%");
+        }
+        else if (combo >= 200)
+        {
+            print("攻擊力 + 20%");
         }
         else if (combo >= 100) 
         {
-            print("攻擊力+10%");
+            print("攻擊力 + 10%");
         }
-        else if (combo >= 200) 
+        #endregion
+
+        #region 判斷式 switch
+        /* switch 語法:
+          switch (比較的運算式)
+          {
+             case 值:
+               程式內容
+               break;
+          } 
+        */
+
+        switch (prop)
         {
-            print("攻擊力+20%");
+            case "紅色藥水":
+                print("補血");
+                break;
+
+            case "藍色藥水":
+                print("補魔");
+                break;
+
+            case "黃色藥水":
+                print("補體力");
+                break;
+
+            //可省略
+            default:
+                print("沒有此道具");
+                break;
         }
 
+        switch (statePlayer)
+        {
+            case StatePlayer.Idle:
+                print("等待");
+                break;
+            case StatePlayer.Walk:
+                print("走路");
+                break;
+            case StatePlayer.Run:
+                print("跑步");
+                break;
+            case StatePlayer.Hurt:
+                print("受傷");
+                break;
+            case StatePlayer.Att:
+                print("攻擊");
+                break;
+            case StatePlayer.Dead:
+                print("死亡");
+                break;
+        }
+        #endregion
     }
 }
