@@ -1538,7 +1538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &390823580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3821,6 +3821,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 145076419}
   m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &763233457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 763233459}
+  - component: {fileID: 763233458}
+  m_Layer: 0
+  m_Name: "\u5B78\u7FD2\u975E\u975C\u614BAPI"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &763233458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763233457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d92832780770d44c91bdc24a607e11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traA: {fileID: 2078112397}
+  lightA: {fileID: 1979477013}
+  traB: {fileID: 1719873294}
+--- !u!4 &763233459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763233457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &782123349
 GameObject:
@@ -15535,6 +15582,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1066282404289917137, guid: 8c1a7c16b87df69448b0e10343438b3b, type: 3}
   m_PrefabInstance: {fileID: 2075455164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2078112397 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400018, guid: 1f499d0eded7a4245b0c36149a43da4f, type: 3}
+  m_PrefabInstance: {fileID: 2040943889}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2091718441
 PrefabInstance:
