@@ -18,9 +18,19 @@ namespace Pei
         public GameObject marble;
         [Header("彈珠可發射總數"), Range(0, 100)]
         public int canShootMarbleTotal = 15;
+        [Header("彈珠生成點")]
+        public Transform traSpawnPoint;
+        [Header("攻擊參數名稱")]
+        public string parAttack = "Trigger_攻擊";
+
+        public Animator ani;
         #endregion
 
         #region 事件
+        private void Update()
+        {
+            ShootMarble();
+        }
         #endregion
 
         #region 方法
@@ -36,7 +46,12 @@ namespace Pei
         /// </summary>
         private void ShootMarble()
         {
-
+            //放開滑鼠左鍵，生成並發射彈珠
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                print("放開左鍵");
+                Instantiate(marble,traSpawnPoint.position,Quaternion.identity);
+            }
         }
         /// <summary>
         /// 回收彈珠
