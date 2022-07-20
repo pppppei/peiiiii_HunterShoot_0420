@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 //命名空間: namespace 空間名稱 {該空間內容}
 namespace Pei
@@ -22,11 +23,21 @@ namespace Pei
         public Transform traSpawnPoint;
         [Header("攻擊參數名稱")]
         public string parAttack = "Trigger_攻擊";
+        [Header("彈珠發射速度"), Range(0, 5000)]
+        public float speedMarble = 1000;
+        [Header("彈珠發射間隔"), Range(0, 2)]
+        public float intervalMarble = 0.5f;
 
         public Animator ani;
         #endregion
 
         #region 事件
+        //Awake在Start之前執行一次
+        private void Awake()
+        {
+            ani = GetComponent <Animator>();
+        }
+
         private void Update()
         {
             ShootMarble();
@@ -46,11 +57,38 @@ namespace Pei
         /// </summary>
         private void ShootMarble()
         {
-            //放開滑鼠左鍵，生成並發射彈珠
-            if (Input.GetKeyUp(KeyCode.Mouse0))
+            //按下滑鼠左鍵,顯示箭頭
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                print("放開左鍵");
-                Instantiate(marble,traSpawnPoint.position,Quaternion.identity);
+                arrow.SetActive(true);
+            }
+            //放開滑鼠左鍵，生成並發射彈珠
+            else if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                //print("放開左鍵");
+                arrow.SetActive(false);
+                StartCoroutine(SpawnMarble());
+            }
+        }
+
+        /// <summary>
+        /// 生成彈珠附帶間隔時間
+        /// </summary>
+        private IEnumerator SpawnMarble()
+        {
+            for (int i = 0; i < canShootMarbleTotal; i++)
+            {
+                ani.SetTrigger(parAttack);
+                //Object 類別可省略不寫
+                //直接透過 Object 成員名稱使用
+                //生成(彈珠);
+                //Quaternion.identity 零角度
+                GameObject tempMarble = Instantiate(marble,traSpawnPoint.position,Quaternion.identity);
+                //暫存彈珠 取得鋼體元件 添加推力(角色.前方*速度)
+                //transform.forward 角色前方
+                tempMarble.GetComponent<Rigidbody>().AddForce(transform.forward * speedMarble);
+
+                yield return new WaitForSeconds(intervalMarble);
             }
         }
         /// <summary>
