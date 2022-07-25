@@ -25,9 +25,9 @@ namespace Pei
         [Header("攻擊參數名稱")]
         public string parAttack = "Trigger_攻擊";
         [Header("彈珠發射速度"), Range(0, 5000)]
-        public float speedMarble = 1000;
+        public float speedMarble = 3000;
         [Header("彈珠發射間隔"), Range(0, 2)]
-        public float intervalMarble = 0.5f;
+        public float intervalMarble = 0.2f;
         [Header("彈珠數量")]
         public TextMeshProUGUI textMarbleCount;
 
@@ -66,6 +66,7 @@ namespace Pei
         private void Update()
         {
             ShootMarble();
+            TurnCharacter();
         }
         #endregion
 
@@ -75,7 +76,21 @@ namespace Pei
         /// </summary>
         private void TurnCharacter()
         {
-
+            //如果 不能發射 就跳出
+            if (!canShootMarble) return;
+            //1.滑鼠座標
+            Vector3 posMouse = Input.mousePosition;
+            //print("<color=blue>滑鼠座標:" + posMouse + "</color>");
+            //跟攝影機的y軸一樣
+            posMouse.z = 30;
+            //2.滑鼠座標轉為世界座標
+            Vector3 pos = cameraMouse.ScreenToWorldPoint(posMouse);
+            //將轉換完的世界座標高度設定為角色的高度
+            pos.y = 0.5f;
+            //3.世界座標給實體物件
+            traMouse.position = pos;
+            //此物件的變形.面向(座標轉換後實體物件)
+            transform.LookAt(traMouse);
         }
         /// <summary>
         /// 發射彈珠，根據總數發射彈珠物件
