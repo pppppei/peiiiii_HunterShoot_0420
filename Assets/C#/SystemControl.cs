@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 //命名空間: namespace 空間名稱 {該空間內容}
 namespace Pei
@@ -27,8 +28,25 @@ namespace Pei
         public float speedMarble = 1000;
         [Header("彈珠發射間隔"), Range(0, 2)]
         public float intervalMarble = 0.5f;
+        [Header("彈珠數量")]
+        public TextMeshProUGUI textMarbleCount;
 
-        public Animator ani;
+        private Animator ani;        
+        
+        /// <summary>
+        /// 能否發射彈珠
+        /// </summary>
+        private bool canShootMarble = true;
+
+        /// <summary>
+        /// 轉換滑鼠用攝影機
+        /// </summary>
+        private Camera cameraMouse;
+        /// <summary>
+        /// 座標轉換後實體物件
+        /// </summary>
+        private Transform traMouse;
+
         #endregion
 
         #region 事件
@@ -36,6 +54,13 @@ namespace Pei
         private void Awake()
         {
             ani = GetComponent <Animator>();
+
+            textMarbleCount.text = "x" + canShootMarbleTotal;
+
+            cameraMouse = GameObject.Find("轉換滑鼠用攝影機").GetComponent<Camera>();
+            //traMouse = GameObject.Find("座標轉換後實體物件").GetComponent<Transform>();
+            traMouse = GameObject.Find("座標轉換後實體物件").transform;
+
         }
 
         private void Update()
@@ -57,6 +82,10 @@ namespace Pei
         /// </summary>
         private void ShootMarble()
         {
+
+            //如果 不能發射彈珠 就跳出
+            if (!canShootMarble) return;
+
             //按下滑鼠左鍵,顯示箭頭
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
@@ -65,6 +94,9 @@ namespace Pei
             //放開滑鼠左鍵，生成並發射彈珠
             else if (Input.GetKeyUp(KeyCode.Mouse0))
             {
+                //不能發射彈珠
+                canShootMarble = false;
+
                 //print("放開左鍵");
                 arrow.SetActive(false);
                 StartCoroutine(SpawnMarble());
@@ -76,6 +108,8 @@ namespace Pei
         /// </summary>
         private IEnumerator SpawnMarble()
         {
+            int total = canShootMarbleTotal;
+
             for (int i = 0; i < canShootMarbleTotal; i++)
             {
                 ani.SetTrigger(parAttack);
@@ -87,6 +121,11 @@ namespace Pei
                 //暫存彈珠 取得鋼體元件 添加推力(角色.前方*速度)
                 //transform.forward 角色前方
                 tempMarble.GetComponent<Rigidbody>().AddForce(transform.forward * speedMarble);
+
+                total--;
+
+                if (total > 0) textMarbleCount.text = "x" + total;
+                else if (total == 0) textMarbleCount.text = "";
 
                 yield return new WaitForSeconds(intervalMarble);
             }
