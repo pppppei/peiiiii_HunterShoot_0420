@@ -61,6 +61,7 @@ namespace Pei
             //traMouse = GameObject.Find("座標轉換後實體物件").GetComponent<Transform>();
             traMouse = GameObject.Find("座標轉換後實體物件").transform;
 
+            Physics.IgnoreLayerCollision(3, 3);
         }
 
         private void Update()
