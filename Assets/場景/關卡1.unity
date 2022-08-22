@@ -2410,6 +2410,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9263bdf7e667d154999bdc87050fd346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onRecycle:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &540223581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3976,8 +3979,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723397836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.5, y: 2.15, z: 0.07000017}
-  m_LocalScale: {x: 3, y: 3.5, z: 18}
+  m_LocalPosition: {x: 8.5, y: 2.15, z: 1.21}
+  m_LocalScale: {x: 3, y: 3.5, z: 20.269798}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -13230,8 +13233,9 @@ MonoBehaviour:
   - {fileID: 1279991995}
   - {fileID: 1893940932}
   - {fileID: 1306068429}
-  listSecondPlace: []
   goMarble: {fileID: 1874586616715404600, guid: 9127fdd077e95ab44af4942539be1ddc, type: 3}
+  listSecondPlace: []
+  totalCountEnemyLive: 0
 --- !u!4 &1643554238
 Transform:
   m_ObjectHideFlags: 0
@@ -14211,6 +14215,7 @@ MonoBehaviour:
   speedMarble: 3000
   intervalMarble: 0.2
   textMarbleCount: {fileID: 502714718}
+  canShootMarble: 1
 --- !u!1001 &1723123235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14702,6 +14707,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8059193129197314167, guid: 5ab20ef860e1755488677baf3b50c85f, type: 3}
   m_PrefabInstance: {fileID: 1842184721}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1872342295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1872342297}
+  - component: {fileID: 1872342296}
+  m_Layer: 0
+  m_Name: "\u56DE\u5408\u7CFB\u7D71"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1872342296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872342295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8582c38d8f1d42489b47a7a246b5645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTurnEnemy:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1872342297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872342295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.9338143, y: 13.718445, z: -12.102849}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1892965184
 GameObject:
   m_ObjectHideFlags: 0
@@ -15846,8 +15898,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005463103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.5, y: 2.15, z: 0.07000017}
-  m_LocalScale: {x: 3, y: 3.5, z: 18}
+  m_LocalPosition: {x: -8.5, y: 2.15, z: 1.21}
+  m_LocalScale: {x: 3, y: 3.5, z: 20.269798}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

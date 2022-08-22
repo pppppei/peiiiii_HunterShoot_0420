@@ -9,6 +9,7 @@ namespace Peiiiii
     /// </summary>
     public class SystemHealth : MonoBehaviour
     {
+        #region 資料
         [Header("畫布傷害物件"), SerializeField]
         private GameObject goDamage;
         [Header("圖片血量"), SerializeField]
@@ -23,10 +24,15 @@ namespace Peiiiii
         private float hp;
         private string parDamage = "Trigger_受傷";
 
+        #endregion
+
+        private SystemSpawn systemSpawn;
+
         private void Awake()
         {
             hp = dataEnemy.hp; 
             textHp.text = hp.ToString();
+            systemSpawn = GameObject.Find("生成怪物系統").GetComponent<SystemSpawn>();
         }
 
         //碰撞事件
@@ -58,9 +64,14 @@ namespace Peiiiii
             if (hp <= 0) Dead();
         }
 
+        /// <summary>
+        /// 死亡
+        /// </summary>
         private void Dead()
         {
-            print("死亡");
+            //print("死亡");
+            Destroy(gameObject);
+            systemSpawn.totalCountEnemyLive--;
         }
     }
 

@@ -15,18 +15,22 @@ namespace Peiiiii
         private GameObject[] goEnemies;
         [Header("生成格子第二排座標"), SerializeField]
         private Transform[] traSecondPlace;
+        [Header("彈珠格子"), SerializeField]
+        private GameObject goMarble;
 
         [SerializeField]
         private List<Transform> listSecondPlace = new List<Transform>();
 
-        [Header("彈珠格子"), SerializeField]
-        private GameObject goMarble;
+        /// <summary>
+        /// 怪物與可以吃的彈珠存活總數
+        /// </summary>
+        public int totalCountEnemyLive;
         #endregion
 
         #region 事件
         private void Awake()
         {
-            SpawnRandomEnemies();
+            SpawnRandomEnemy();
         }
         #endregion
 
@@ -34,7 +38,7 @@ namespace Peiiiii
         /// <summary>
         /// 生成隨機敵人
         /// </summary>
-        private void SpawnRandomEnemies()
+        public void SpawnRandomEnemy()
         {
             int min = 2;                        //彈珠、怪物
             int max = traSecondPlace.Length;
@@ -78,6 +82,9 @@ namespace Peiiiii
                         listSecondPlace[i].position, 
                         Quaternion.identity);
                 }
+
+                totalCountEnemyLive++;
+                print("怪物與彈珠數量:" + totalCountEnemyLive);
             }
         }
 
