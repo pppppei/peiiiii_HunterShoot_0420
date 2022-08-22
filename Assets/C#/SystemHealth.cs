@@ -17,8 +17,11 @@ namespace Peiiiii
         private TextMeshProUGUI textHp;
         [Header("怪物資料"), SerializeField]
         private DataEnemy dataEnemy;
+        [Header("敵人動畫控制器"), SerializeField]
+        private Animator aniEnemy;
 
         private float hp;
+        private string parDamage = "Trigger_受傷";
 
         private void Awake()
         {
@@ -43,10 +46,14 @@ namespace Peiiiii
         /// </summary>
         private void GetDamage()
         {
-            hp -= 50;
-            //print("血量剩下:" + hp);
+            float getDamage = 50;
+            hp -= getDamage;
             textHp.text = hp.ToString();
             imgHp.fillAmount = hp / dataEnemy.hp;
+            aniEnemy.SetTrigger(parDamage);
+            Vector3 pos = transform.position + Vector3.up;
+            SystemDamage tempDamage = Instantiate(goDamage, pos, Quaternion.Euler(45, 0, 0)).GetComponent<SystemDamage>();
+            tempDamage.damage = getDamage;
 
             if (hp <= 0) Dead();
         }

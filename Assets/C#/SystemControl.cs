@@ -3,7 +3,7 @@ using System.Collections;
 using TMPro;
 
 //命名空間: namespace 空間名稱 {該空間內容}
-namespace Pei
+namespace Peiiiii
 {
     /// <summary>
     /// 玩家控制系統

@@ -40,7 +40,7 @@ namespace Peiiiii
             int max = traSecondPlace.Length;
 
             int randomCount = Random.Range(min, max);
-            print("隨機怪物數量:" + randomCount);
+            //print("隨機怪物數量:" + randomCount);
 
             //清單=陣列.轉為清單();
             listSecondPlace = traSecondPlace.ToList();
@@ -50,7 +50,7 @@ namespace Peiiiii
             listSecondPlace = listSecondPlace.OrderBy(x => random.Next()).ToList();
 
             int sub = traSecondPlace.Length - randomCount;
-            print("扣掉數:" + sub);
+            //print("扣掉數:" + sub);
 
             //迴圈 刪除 要扣的數量
             for (int i = 0; i < sub; i++)
