@@ -36,7 +36,7 @@ namespace Peiiiii
         /// <summary>
         /// 能否發射彈珠
         /// </summary>
-        [HideInInspector]
+        [HideInInspector]  //隱藏資料不須顯示
         public bool canShootMarble = true;
 
         /// <summary>

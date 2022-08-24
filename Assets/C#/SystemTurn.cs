@@ -40,7 +40,7 @@ namespace Peiiiii
             systemControl = GameObject.Find("太空人").GetComponent<SystemControl>();
             systemSpawn = GameObject.Find("生成怪物系統").GetComponent<SystemSpawn>();
             recycleArea = GameObject.Find("回收區域").GetComponent<RecycleArea>();
-
+            //AddListener 監聽器
             recycleArea.onRecycle.AddListener(RecycleMarble);
 
         }
@@ -52,7 +52,7 @@ namespace Peiiiii
         {
             totalCountMarble = systemControl.canShootMarbleTotal;
 
-            totalCountMarble++;
+            totalRecycleMarble++;
             //print("<color=yellow>彈珠回收數量:" + totalRecycleMarble + "</color>");
 
             if (totalRecycleMarble == totalCountMarble)
@@ -71,9 +71,12 @@ namespace Peiiiii
 
             canSpawn = false;
             systemSpawn.SpawnRandomEnemy();
-            Invoke("PlayerTurn", 1);
+            Invoke("PlayerTurn", 0.7f);
         }
 
+        /// <summary>
+        /// 玩家回合
+        /// </summary>
         private void PlayerTurn()
         {
             systemControl.canShootMarble = true;
