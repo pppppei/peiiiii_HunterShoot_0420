@@ -25,7 +25,7 @@ namespace Peiiiii
         [Header("攻擊參數名稱")]
         public string parAttack = "Trigger_攻擊";
         [Header("彈珠發射速度"), Range(0, 5000)]
-        public float speedMarble = 3000;
+        public float speedMarble = 4200;
         [Header("彈珠發射間隔"), Range(0, 2)]
         public float intervalMarble = 0.2f;
         [Header("彈珠數量")]

@@ -84,7 +84,7 @@ namespace Peiiiii
                 }
 
                 totalCountEnemyLive++;
-                print("怪物與彈珠數量:" + totalCountEnemyLive);
+                //print("怪物與彈珠數量:" + totalCountEnemyLive);
             }
         }
 

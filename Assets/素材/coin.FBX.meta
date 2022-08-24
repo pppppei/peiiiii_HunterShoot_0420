@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 66c0d9b69854f4b408be75af16e57af4
+guid: b32954d6f364eae4bb00df220fb9b087
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: coinMat
-    second: {fileID: 2100000, guid: 05dd3c56e5138294391498af72ccb18b, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -102,7 +97,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
