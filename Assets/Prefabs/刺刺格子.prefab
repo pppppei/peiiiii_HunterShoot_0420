@@ -66,6 +66,9 @@ MonoBehaviour:
   textHp: {fileID: 7295705704733655995}
   dataEnemy: {fileID: 11400000, guid: 1ddfe05356fc3da4e8a4c5c9549d57bf, type: 2}
   aniEnemy: {fileID: 618968009785489381}
+  nameHurtObject: "\u5F48\u73E0"
+  v3DamageSize: {x: 0, y: 0, z: 0}
+  v3DamagePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1194419812845573430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +315,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 827632716216806955, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1025
+      objectReference: {fileID: 0}
+    - target: {fileID: 827632716216806955, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 175
+      objectReference: {fileID: 0}
     - target: {fileID: 827632716930076436, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -420,9 +431,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 827632717353324962, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_fontSize
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 827632717353324962, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 827632717353324964, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 827632717353324965, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 827632717353324965, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 260
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}

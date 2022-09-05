@@ -26,13 +26,35 @@ namespace Peiiiii
 
         #endregion
 
+        /// <summary>
+        /// 碰到會受傷的物件名稱
+        /// </summary>
+        [Header("碰到會受傷的物件名稱"),SerializeField]
+        private string nameHurtObject;
+
+        [Header("玩家接收傷害區域")]
+        [SerializeField] private Vector3 v3DamageSize;
+        [SerializeField] private Vector3 v3DamagePosition;
+
         private SystemSpawn systemSpawn;
+
+        private void OnDrawGizmos()
+        {
+            //只有在unity上看得到顏色格子
+            Gizmos.color = new Color(0.2f, 1, 0.2f, 0.5f);
+            Gizmos.DrawCube(v3DamagePosition, v3DamageSize);
+        }
 
         private void Awake()
         {
             hp = dataEnemy.hp; 
             textHp.text = hp.ToString();
             systemSpawn = GameObject.Find("生成怪物系統").GetComponent<SystemSpawn>();
+        }
+
+        private void Update()
+        {
+            CheckObjectInDamageArea();
         }
 
         //碰撞事件
@@ -43,8 +65,20 @@ namespace Peiiiii
         private void OnCollisionEnter(Collision collision)
         {
             //print("碰撞到的物件:" + collision.gameObject);
+            if(collision.gameObject.name.Contains(nameHurtObject))GetDamage();
+        }
 
-            GetDamage();
+        /// <summary>
+        /// 檢查物件是否盡到受傷區域
+        /// </summary>
+        private void CheckObjectInDamageArea()
+        {
+            Collider[] hits = Physics.OverlapBox(v3DamagePosition, v3DamageSize / 2);
+
+            if (hits.Length > 0)
+            {
+                print("進到受傷區域的物件:" + hits[0]);
+            }
         }
 
         /// <summary>

@@ -33,6 +33,8 @@ namespace Peiiiii
         private int totalRecycleMarble;
         #endregion
 
+        private int countMarbleEat;
+
         private bool canSpawn = true;
 
         private void Awake()
@@ -82,6 +84,19 @@ namespace Peiiiii
             systemControl.canShootMarble = true;
             canSpawn = true;
             totalRecycleMarble = 0;
+
+            #region 彈珠數量處理
+            systemControl.canShootMarbleTotal += countMarbleEat;
+            countMarbleEat = 0;
+            #endregion
+        }
+
+        /// <summary>
+        /// 吃到彈珠數量遞增
+        /// </summary>
+        public void MarbleEat()
+        {
+            countMarbleEat++;
         }
     }
 
