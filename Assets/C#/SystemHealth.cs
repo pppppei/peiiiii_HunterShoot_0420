@@ -35,6 +35,8 @@ namespace Peiiiii
         [Header("玩家接收傷害區域")]
         [SerializeField] private Vector3 v3DamageSize;
         [SerializeField] private Vector3 v3DamagePosition;
+        [Header("接受傷害的圖層"), SerializeField]
+        private LayerMask LayerDamage;
 
         private SystemSpawn systemSpawn;
 
@@ -73,11 +75,14 @@ namespace Peiiiii
         /// </summary>
         private void CheckObjectInDamageArea()
         {
-            Collider[] hits = Physics.OverlapBox(v3DamagePosition, v3DamageSize / 2);
+            Collider[] hits = Physics.OverlapBox(
+                v3DamagePosition, v3DamageSize / 2, 
+                Quaternion.identity, LayerDamage);
 
             if (hits.Length > 0)
             {
-                print("進到受傷區域的物件:" + hits[0]);
+                GetDamage();
+                Destroy(hits[0].gameObject);
             }
         }
 
