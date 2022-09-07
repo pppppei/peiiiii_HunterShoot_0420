@@ -67,7 +67,8 @@ namespace Peiiiii
         private void OnCollisionEnter(Collision collision)
         {
             //print("碰撞到的物件:" + collision.gameObject);
-            if(collision.gameObject.name.Contains(nameHurtObject))GetDamage();
+            if(collision.gameObject.name.Contains(nameHurtObject))
+               GetDamage(collision.gameObject.GetComponent<SystemAttack>().valueAttack);
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Peiiiii
 
             if (hits.Length > 0)
             {
-                GetDamage();
+                GetDamage(hits[0].GetComponent<SystemAttack>().valueAttack);
                 Destroy(hits[0].gameObject);
             }
         }
@@ -89,9 +90,8 @@ namespace Peiiiii
         /// <summary>
         /// 受傷
         /// </summary>
-        private void GetDamage()
+        private void GetDamage(float getDamage)
         {
-            float getDamage = 50;
             hp -= getDamage;
             textHp.text = hp.ToString();
             imgHp.fillAmount = hp / dataEnemy.hp;
