@@ -9,12 +9,13 @@ namespace Peiiiii
     /// </summary>
     public class SystemTurn : MonoBehaviour
     {
+        #region 資料
+
         /// <summary>
         /// 敵人回合
         /// </summary>
         public UnityEvent onTurnEnemy;
 
-        #region 資料
         private SystemControl systemControl;
         private SystemSpawn systemSpawn;
         private RecycleArea recycleArea;
@@ -48,6 +49,8 @@ namespace Peiiiii
 
         #endregion
 
+        private SystemFinal systemFinal;
+
         private void Awake()
         {
             systemControl = GameObject.Find("太空人").GetComponent<SystemControl>();
@@ -57,6 +60,7 @@ namespace Peiiiii
             //AddListener 監聽器
             recycleArea.onRecycle.AddListener(RecycleMarble);
 
+            systemFinal = FindObjectOfType<SystemFinal>();
         }
 
         [Header("沒有移動物件並且延遲生成的時間"), Range(0, 3)]
@@ -98,21 +102,6 @@ namespace Peiiiii
             }
             Invoke("PlayerTurn", 0.7f);
 
-            if (countFloor < countFloorMax)
-            {
-                countFloor++;
-                textFloorCount.text = countFloor.ToString();
-            }
-            if (countFloor == countFloorMax) isFloorCountMax = true;
-
-            if (isFloorCountMax)
-            {
-                if (FindObjectsOfType<SystemMove>().Length == 0)
-                {
-                    print("關卡挑戰成功");
-                }
-            }
-
         }
 
         /// <summary>
@@ -128,6 +117,22 @@ namespace Peiiiii
             systemControl.canShootMarbleTotal += countMarbleEat;
             countMarbleEat = 0;
             #endregion
+
+            if (countFloor < countFloorMax)
+            {
+                countFloor++;
+                textFloorCount.text = countFloor.ToString();
+            }
+            if (countFloor == countFloorMax) isFloorCountMax = true;
+
+            if (isFloorCountMax)
+            {
+                if (FindObjectsOfType<SystemMove>().Length == 0)
+                {
+                    //print("關卡挑戰成功");
+                    systemFinal.ShowFinalAndUpdateTitle("Level Success!");
+                }
+            }
 
         }
 

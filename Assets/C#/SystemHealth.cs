@@ -31,14 +31,16 @@ namespace Peiiiii
         /// </summary>
         [Header("碰到會受傷的物件名稱"),SerializeField]
         private string nameHurtObject;
-
         [Header("玩家接收傷害區域")]
         [SerializeField] private Vector3 v3DamageSize;
         [SerializeField] private Vector3 v3DamagePosition;
         [Header("接受傷害的圖層"), SerializeField]
         private LayerMask LayerDamage;
+        [Header("是否為玩家"), SerializeField]
+        private bool isPlayer;
 
         private SystemSpawn systemSpawn;
+        private SystemFinal systemFinal;
 
         private void OnDrawGizmos()
         {
@@ -52,6 +54,7 @@ namespace Peiiiii
             hp = dataEnemy.hp; 
             textHp.text = hp.ToString();
             systemSpawn = GameObject.Find("生成怪物系統").GetComponent<SystemSpawn>();
+            systemFinal = FindObjectOfType<SystemFinal>();
         }
 
         private void Update()
@@ -108,11 +111,15 @@ namespace Peiiiii
         /// </summary>
         private void Dead()
         {
-            //print("死亡");
-            Destroy(gameObject);
-            systemSpawn.totalCountEnemyLive--;
-            //print("<color=red>怪物數量:" + systemSpawn.totalCountEnemyLive + "</color>");
-            DropCoin();
+            if (isPlayer) systemFinal.ShowFinalAndUpdateTitle("Level Fail...");
+            else
+            {
+                //print("死亡");
+                Destroy(gameObject);
+                systemSpawn.totalCountEnemyLive--;
+                //print("<color=red>怪物數量:" + systemSpawn.totalCountEnemyLive + "</color>");
+                DropCoin();
+            }
         }
 
         /// <summary>
