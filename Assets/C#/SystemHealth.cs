@@ -26,13 +26,40 @@ namespace Peiiiii
 
         #endregion
 
+        /// <summary>
+        /// 碰到會受傷的物件名稱
+        /// </summary>
+        [Header("碰到會受傷的物件名稱"),SerializeField]
+        private string nameHurtObject;
+        [Header("玩家接收傷害區域")]
+        [SerializeField] private Vector3 v3DamageSize;
+        [SerializeField] private Vector3 v3DamagePosition;
+        [Header("接受傷害的圖層"), SerializeField]
+        private LayerMask LayerDamage;
+        [Header("是否為玩家"), SerializeField]
+        private bool isPlayer;
+
         private SystemSpawn systemSpawn;
+        private SystemFinal systemFinal;
+
+        private void OnDrawGizmos()
+        {
+            //只有在unity上看得到顏色格子
+            Gizmos.color = new Color(0.2f, 1, 0.2f, 0.5f);
+            Gizmos.DrawCube(v3DamagePosition, v3DamageSize);
+        }
 
         private void Awake()
         {
             hp = dataEnemy.hp; 
             textHp.text = hp.ToString();
             systemSpawn = GameObject.Find("生成怪物系統").GetComponent<SystemSpawn>();
+            systemFinal = FindObjectOfType<SystemFinal>();
+        }
+
+        private void Update()
+        {
+            CheckObjectInDamageArea();
         }
 
         //碰撞事件
@@ -43,16 +70,31 @@ namespace Peiiiii
         private void OnCollisionEnter(Collision collision)
         {
             //print("碰撞到的物件:" + collision.gameObject);
+            if(collision.gameObject.name.Contains(nameHurtObject))
+               GetDamage(collision.gameObject.GetComponent<SystemAttack>().valueAttack);
+        }
 
-            GetDamage();
+        /// <summary>
+        /// 檢查物件是否盡到受傷區域
+        /// </summary>
+        private void CheckObjectInDamageArea()
+        {
+            Collider[] hits = Physics.OverlapBox(
+                v3DamagePosition, v3DamageSize / 2, 
+                Quaternion.identity, LayerDamage);
+
+            if (hits.Length > 0)
+            {
+                GetDamage(hits[0].GetComponent<SystemAttack>().valueAttack);
+                Destroy(hits[0].gameObject);
+            }
         }
 
         /// <summary>
         /// 受傷
         /// </summary>
-        private void GetDamage()
+        private void GetDamage(float getDamage)
         {
-            float getDamage = 50;
             hp -= getDamage;
             textHp.text = hp.ToString();
             imgHp.fillAmount = hp / dataEnemy.hp;
@@ -69,11 +111,15 @@ namespace Peiiiii
         /// </summary>
         private void Dead()
         {
-            //print("死亡");
-            Destroy(gameObject);
-            systemSpawn.totalCountEnemyLive--;
-            //print("<color=red>怪物數量:" + systemSpawn.totalCountEnemyLive + "</color>");
-            DropCoin();
+            if (isPlayer) systemFinal.ShowFinalAndUpdateTitle("Level Fail...");
+            else
+            {
+                //print("死亡");
+                Destroy(gameObject);
+                systemSpawn.totalCountEnemyLive--;
+                //print("<color=red>怪物數量:" + systemSpawn.totalCountEnemyLive + "</color>");
+                DropCoin();
+            }
         }
 
         /// <summary>

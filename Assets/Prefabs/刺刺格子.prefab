@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 618968009915853042}
   - component: {fileID: 6795719491598487883}
   - component: {fileID: 1194419812845573430}
+  - component: {fileID: -1872644217834708904}
   m_Layer: 7
   m_Name: "\u523A\u523A\u683C\u5B50"
   m_TagString: Untagged
@@ -66,6 +67,12 @@ MonoBehaviour:
   textHp: {fileID: 7295705704733655995}
   dataEnemy: {fileID: 11400000, guid: 1ddfe05356fc3da4e8a4c5c9549d57bf, type: 2}
   aniEnemy: {fileID: 618968009785489381}
+  nameHurtObject: "\u5F48\u73E0"
+  v3DamageSize: {x: 0, y: 0, z: 0}
+  v3DamagePosition: {x: 0, y: 0, z: 0}
+  LayerDamage:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1194419812845573430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +85,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee5a2fa35b5d8046bb86a0de0db107b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1872644217834708904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618968009915853053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee450db647461814f8f47739a9bb766b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataAttack: {fileID: 11400000, guid: 86aba7f52a8bf074e90668f60b310165, type: 2}
+  valueAttack: 0
 --- !u!1001 &618968009776087685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -312,6 +333,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 827632716216806955, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1025
+      objectReference: {fileID: 0}
+    - target: {fileID: 827632716216806955, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 175
+      objectReference: {fileID: 0}
     - target: {fileID: 827632716930076436, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -420,9 +449,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 827632717353324962, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_fontSize
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 827632717353324962, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 827632717353324964, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 827632717353324965, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 827632717353324965, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 260
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1244f69471e464043923fb9f0be3a9ab, type: 3}
