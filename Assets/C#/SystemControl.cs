@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
+using System.Data;
+
 
 //命名空間: namespace 空間名稱 {該空間內容}
 namespace Peiiiii
@@ -147,6 +150,7 @@ namespace Peiiiii
                 yield return new WaitForSeconds(intervalMarble);
             }
         }
+
         /// <summary>
         /// 回收彈珠
         /// </summary>
